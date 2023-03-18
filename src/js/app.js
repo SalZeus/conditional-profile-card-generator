@@ -29,18 +29,49 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  const {
+    lastname,
+    name,
+    role,
+    city,
+    country,
+    avatarURL,
+    twitter,
+    github,
+    linkedin,
+    instagram,
+    background,
+    includeCover,
+    socialMediaPosition
+  } = variables;
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <img src="${
+            avatarURL
+              ? avatarURL
+              : "https://randomuser.me/api/portraits/women/42.jpg"
+          }" class="photo" />
+          <h1>${name ? name : "Name Here"} ${
+    lastname ? lastname : "Last Name Here"
+  }</h1>
+          <h2>${role ? role : "WebDev"}</h2>
+          <h3>${city ? city : "Miami"}, ${country ? country : "USAquen"}</h3>
+          <ul class="${
+            socialMediaPosition ? socialMediaPosition : "position-left"
+          }">
+            <li><a href="https://twitter.com/${
+              twitter ? twitter : "4GeeksAcademy"
+            }"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${
+              github ? github : "4geeks"
+            }"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${
+              linkedin ? linkedin : "company/4geeks/about/"
+            }"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${
+              instagram ? instagram : "4geeksglobal/"
+            }"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -89,3 +120,4 @@ window.onload = function() {
     });
   });
 };
+// condition ? exprIfTrue : exprIfFalse;
